@@ -12,7 +12,18 @@ public class POOACA1 {
 
     
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         
+        while (true) {
+            System.out.println("Menu")
+            System.out.println("1. Standard Operation")
+            System.out.println("2. Add Validated data to statu.txt via Console")
+            System.out.println("3. Exit");
+            
+            System.out.println("Choose an option (1-3): ");
+            int choice = scanner.nextInt();
+                    
+        }
         
         
     }
