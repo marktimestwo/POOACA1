@@ -14,12 +14,19 @@ public class POOACA1 {
     
     public static boolean isValidData(String firstName, String secondName, int numClasses, String studentNumber) {
         
-        bolean isValid = true;
+        boolean isValid = true;
         
         if (!firstName.matches("[a-zA-Z")) {
             System.out.println("Invalid First Name: Should only contain letters.");
             isValid = false;
         }
+        
+        if (!secondName.matches("[a-zA-Z0-9]")) {
+            System.out.println("Invalid Second Name: Should contain letters and/or numbers.");
+            isValid = false;
+        }
+        
+        
         
     }
 
