@@ -21,13 +21,22 @@ public class POOACA1 {
             isValid = false;
         }
         
-        if (!secondName.matches("[a-zA-Z0-9]")) {
+        if (!secondName.matches("[a-zA-Z0-9]+")) {
             System.out.println("Invalid Second Name: Should contain letters and/or numbers.");
             isValid = false;
         }
         
+        if (numClasses < 1 || numClasses > 8) {
+            System.out.println("Invalid Number of Classes: Should be between 1 and 8.");
+            isValid = false;
+        }
         
+        if (!studentNumber.matches("2[0-9][a-zA-Z]{3}\\d{3}")) {
+            System.out.println("Invalid Student Number Format.");
+            isValid = false;
+        }
         
+        return isValid
     }
 
     
