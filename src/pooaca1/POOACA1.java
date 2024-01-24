@@ -12,7 +12,16 @@ import java.util.Scanner;
  */
 public class POOACA1 {
     
-    public static boolean 
+    public static boolean isValidData(String firstName, String secondName, int numClasses, String studentNumber) {
+        
+        bolean isValid = true;
+        
+        if (!firstName.matches("[a-zA-Z")) {
+            System.out.println("Invalid First Name: Should only contain letters.");
+            isValid = false;
+        }
+        
+    }
 
     
     public static void main(String[] args) {
