@@ -16,7 +16,7 @@ public class POOACA1 {
         
         boolean isValid = true;
         
-        if (!firstName.matches("[a-zA-Z")) {
+        if (!firstName.matches("[a-zA-Z]")) {
             System.out.println("Invalid First Name: Should only contain letters.");
             isValid = false;
         }
@@ -36,7 +36,19 @@ public class POOACA1 {
             isValid = false;
         }
         
-        return isValid
+        return isValid;
+    }
+    
+    public static String determineWorkload(int numClasses) {
+        if (numClasses == 1) {
+            return "Very Light";
+        } else if (numClasses == 2) {
+            return "Light";
+        } else if (numClasses >= 3 && numClasses <= 5) {
+            return "Part Time";
+        } else {
+            return "Full Time";
+        }
     }
 
     
