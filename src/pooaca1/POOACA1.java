@@ -12,25 +12,26 @@ import java.util.Scanner;
  */
 public class POOACA1 {
     
+    //Using four parameters to validate student data
     public static boolean isValidData(String firstName, String secondName, int numClasses, String studentNumber) {
         
         boolean isValid = true;
-        
+        //Validating if first name matches
         if (!firstName.matches("[a-zA-Z]")) {
             System.out.println("Invalid First Name: Should only contain letters.");
-            isValid = false;
+            isValid = false; 
         }
-        
+        //Validating if second name matches
         if (!secondName.matches("[a-zA-Z0-9]+")) {
             System.out.println("Invalid Second Name: Should contain letters and/or numbers.");
             isValid = false;
         }
-        
+        //Validating if number of class matches
         if (numClasses < 1 || numClasses > 8) {
             System.out.println("Invalid Number of Classes: Should be between 1 and 8.");
             isValid = false;
         }
-        
+        //Validating if student number matches
         if (!studentNumber.matches("2[0-9][a-zA-Z]{3}\\d{3}")) {
             System.out.println("Invalid Student Number Format.");
             isValid = false;
@@ -38,7 +39,7 @@ public class POOACA1 {
         
         return isValid;
     }
-    
+    //Using a method to categorize number of classes based on workload
     public static String determineWorkload(int numClasses) {
         if (numClasses == 1) {
             return "Very Light";
