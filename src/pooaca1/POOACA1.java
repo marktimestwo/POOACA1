@@ -4,6 +4,9 @@
  */
 package pooaca1;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -50,6 +53,16 @@ public class POOACA1 {
         } else {
             return "Full Time";
         }
+    }
+    //Using a new method to process student data from a file and using ArrayList to store valid student data
+    public static void processStudentData(String inputFilePath, String outputFilePath) {
+        ArrayList<String[]> validStudents = new ArrayList<>();
+        //Using BufferedReader to read from a file on laptop
+        try (BufferedReader br = new BufferedReader(new FileReader("//Users//marktimestwo//Documents//students.txt"))) {
+            
+        }
+        
+        
     }
 
     
