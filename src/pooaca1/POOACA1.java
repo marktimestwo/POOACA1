@@ -6,6 +6,7 @@ package pooaca1;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,7 +60,31 @@ public class POOACA1 {
         ArrayList<String[]> validStudents = new ArrayList<>();
         //Using BufferedReader to read from a file on laptop
         try (BufferedReader br = new BufferedReader(new FileReader("//Users//marktimestwo//Documents//students.txt"))) {
-            
+            String line;
+            while ((line = br.readLine()) != null {
+                String firstName = line.trim();
+                
+                int numClasses;
+                try {
+                    numClasses = Integer.parseInt(br.readLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid format for number of classes. Please enter a numeric value.");
+                    continue;
+                }
+                
+                String studentNumber = br.readLine().trim();
+                
+                String secondName = "";
+                
+                if (isValidData(firstName, secondName, numClasses, studentNumber)) {
+                    String workload = determineWorkload(numClasses);
+                    validStudents.add(new String[]{studentNumber, secondName, workload});
+                } else {
+                    System.out.println("Invalid data for student " + firstName + " " + secondName + ". Skipping.");
+                } 
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
         }
         
         
