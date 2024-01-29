@@ -63,8 +63,8 @@ public class POOACA1 {
         //Using BufferedReader to read from a file on laptop
         try (BufferedReader br = new BufferedReader(new FileReader("//Users//marktimestwo//Documents//students.txt"))) {
             String line;
-            while ((line = br.readLine()) != null {
-                String firstName = line.trim();
+            while ((line = br.readLine()) != null { //Reads the input files line by line
+                String firstName = line.trim(); //Data extraction from each students
                 
                 int numClasses;
                 try {
@@ -77,21 +77,21 @@ public class POOACA1 {
                 String studentNumber = br.readLine().trim();
                 
                 String secondName = "";
-                
+                //Calls a method to check if data from the file is valid
                 if (isValidData(firstName, secondName, numClasses, studentNumber)) {
                     String workload = determineWorkload(numClasses);
-                    validStudents.add(new String[]{studentNumber, secondName, workload});
-                } else {
+                    validStudents.add(new String[]{studentNumber, secondName, workload}); //Adds valid data to an ArrayList
+                } else { //Invalid data prints error message
                     System.out.println("Invalid data for student " + firstName + " " + secondName + ". Skipping.");
                 } 
             }
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
-        
-        try (BufferedWriter writer = new Bufferedwriter(new FileWriter("//Users//marktimestwo//Documents//status.txt", true))) {
+        //Using bufferedwriter to write valid data to an output file called "status.txt"
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("//Users//marktimestwo//Documents//status.txt", true))) {
            for (String[] student : validStudents) {
-               writer.write(student[0] + " - " + student[1] + "\n" + student[2] + "\n");          
+               writer.write(student[0] + " - " + student[1] + "\n" + student[2] + "\n");//Writes the correct format to the output file       
            } 
            System.out.println("Data written to " + outputFilePath);
         } catch (IOException e) {
@@ -105,7 +105,6 @@ public class POOACA1 {
         
     }
 
-    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Using scanner for user input
         
