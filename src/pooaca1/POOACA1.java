@@ -5,7 +5,9 @@
 package pooaca1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -87,6 +89,19 @@ public class POOACA1 {
             System.err.println("Error reading the file: " + e.getMessage());
         }
         
+        try (BufferedWriter writer = new Bufferedwriter(new FileWriter("//Users//marktimestwo//Documents//status.txt", true))) {
+           for (String[] student : validStudents) {
+               writer.write(student[0] + " - " + student[1] + "\n" + student[2] + "\n");          
+           } 
+           System.out.println("Data written to " + outputFilePath);
+        } catch (IOException e) {
+           System.out.println("Error writing to " + outputFilePath + ": " + e.getMessage());
+        } finally {
+            Object writer = null;
+            if (writer != null) {
+                writer.closed();
+            }
+        }
         
     }
 
