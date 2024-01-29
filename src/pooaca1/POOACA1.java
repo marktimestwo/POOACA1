@@ -23,7 +23,7 @@ public class POOACA1 {
         
         boolean isValid = true;
         //Validating if first name matches
-        if (!firstName.matches("[a-zA-Z]")) {
+        if (!firstName.matches("[a-zA-Z]+")) {
             System.out.println("Invalid First Name: Should only contain letters.");
             isValid = false; 
         }
@@ -99,7 +99,7 @@ public class POOACA1 {
         } finally {
             Object writer = null;
             if (writer != null) {
-                writer.closed();
+                writer.close();
             }
         }
         
@@ -111,9 +111,9 @@ public class POOACA1 {
         // Using an infinite loop until user chooses an option
         while (true) {
             // Menu options to choose from
-            System.out.println("Menu");;
+            System.out.println("Menu");
             System.out.println("1. Standard Operation");
-            System.out.println("2. Add Validated data to statu.txt via Console");
+            System.out.println("2. Add Validated data to status.txt via Console");
             System.out.println("3. Exit");
             
             // Asking the user to choose between options
@@ -122,22 +122,59 @@ public class POOACA1 {
             
             switch (choice) {
                 case 1:
+                    processStudentData("students.txt", "status.txt");
                     break;
                 
                 case 2:
+                    System.out.println("Enter student details in the format:");
+                    System.out.println("<First Name> <Second Name>");
+                    System.out.println("<Number of classes>");
+                    System.out.println("<Student Number");
+                    
+                    scanner.nextLine();
+                    String fullName = scanner.nextLine();
+                    String[] names = fullName.split("\\s");
+                    String firstName = names[0];
+                    String secondName = names.length > 1 ? names[1] : "";
+                    
+                    int numClasses;
+                    try {
+                        numClasses = Integer.parseInt(scanner.nextLine().trim());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid format for number of classes.");
+                        break;
+                    }
+                    
+                    String studentNumber = scanner.next().trim();
+                    
+                    System.out.println("Entered First Name: " + firstName);
+                    System.out.println("Entered Second Name: " + secondName);
+                    System.out.println("Entered Number of Classes: " + numClasses);
+                    System.out.println("Entered Student Number: " + studentNumber);
+                    
+                    if (isValidData(firstName, secondName, numClasses, studentNumber)) {
+                        String workload = determineWorkload(numClasses);
+                        try (FileWriter fw = new FileWriter("status.txt", true)) {
+                            fw.write(studentNumber + " - " + secondName + "\n" + workload + "\n");
+                            System.out.println("Data written to status.txt");
+                        } catch (IOException e) {
+                            System.err.println("Error writing to status.txt: " + e.getMessage());
+                        }
+                    } else {
+                        System.out.println("Invalid data. Not saved to status.txt");
+                    }
                     break;
                     
                 case 3:
+                    System.out.println("Leaving program. Hasta la vista baby!");
+                    scanner.close();
+                    System.exit(0);
                     break;
                     
                 default:
                     System.out.println("Invalid option. Please choose a number between 1 and 3.");
                     
-            }
-                    
+            }          
         }
-        
-        
-    }
-    
+    }   
 }
