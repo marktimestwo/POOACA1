@@ -50,7 +50,7 @@ public class POOACA1 {
         if (numClasses == 1) {
             return "Very Light";
         } else if (numClasses == 2) {
-            return "Light";
+            return "Light"; 
         } else if (numClasses >= 3 && numClasses <= 5) {
             return "Part Time";
         } else {
@@ -63,7 +63,7 @@ public class POOACA1 {
         //Using BufferedReader to read from a file on laptop
         try (BufferedReader br = new BufferedReader(new FileReader("//Users//marktimestwo//Documents//students.txt"))) {
             String line;
-            while ((line = br.readLine()) != null { //Reads the input files line by line
+            while ((line = br.readLine()) != null) { //Reads the input files line by line
                 String firstName = line.trim(); //Data extraction from each students
                 
                 int numClasses;
@@ -102,7 +102,6 @@ public class POOACA1 {
                 writer.close();
             }
         }
-        
     }
 
     public static void main(String[] args) {
@@ -120,12 +119,12 @@ public class POOACA1 {
             System.out.println("Choose an option (1-3): ");
             int choice = scanner.nextInt(); 
             
-            switch (choice) {
-                case 1:
+            switch (choice) { //Using a switch statement to handle user choice
+                case 1: //This will call the processStudentData method
                     processStudentData("students.txt", "status.txt");
                     break;
                 
-                case 2:
+                case 2: //This will ask the user for details and add validated data to "status.txt"
                     System.out.println("Enter student details in the format:");
                     System.out.println("<First Name> <Second Name>");
                     System.out.println("<Number of classes>");
@@ -145,7 +144,7 @@ public class POOACA1 {
                         break;
                     }
                     
-                    String studentNumber = scanner.next().trim();
+                    String studentNumber = scanner.next().trim(); //This will read the student number
                     
                     System.out.println("Entered First Name: " + firstName);
                     System.out.println("Entered Second Name: " + secondName);
@@ -165,13 +164,13 @@ public class POOACA1 {
                     }
                     break;
                     
-                case 3:
+                case 3: //This option will terminate the program
                     System.out.println("Leaving program. Hasta la vista baby!");
                     scanner.close();
                     System.exit(0);
                     break;
                     
-                default:
+                default: //This will handle invalid options
                     System.out.println("Invalid option. Please choose a number between 1 and 3.");
                     
             }          
