@@ -24,22 +24,22 @@ public class POOACA1 {
         boolean isValid = true;
         //Validating if first name matches
         if (!firstName.matches("[a-zA-Z]+")) {
-            System.out.println("Invalid First Name: Should only contain letters.");
+            System.out.println("Invalid First Name: Should only contain letters."); //Error message is written
             isValid = false; 
         }
         //Validating if second name matches
         if (!secondName.matches("[a-zA-Z0-9]+")) {
-            System.out.println("Invalid Second Name: Should contain letters and/or numbers.");
+            System.out.println("Invalid Second Name: Should contain letters and/or numbers."); //Error message is written
             isValid = false;
         }
         //Validating if number of class matches
         if (numClasses < 1 || numClasses > 8) {
-            System.out.println("Invalid Number of Classes: Should be between 1 and 8.");
+            System.out.println("Invalid Number of Classes: Should be between 1 and 8."); //Error message is written
             isValid = false;
         }
         //Validating if student number matches
-        if (!studentNumber.matches("2[0-9][a-zA-Z]{3}\\d{3}")) {
-            System.out.println("Invalid Student Number Format.");
+        if (!studentNumber.matches("2[0-9][a-zA-Z]{2}[0-9a-zA-Z]\\d{3}")) {
+            System.out.println("Invalid Student Number Format."); //Error message is written
             isValid = false;
         }
         
@@ -48,13 +48,13 @@ public class POOACA1 {
     //Using a method to categorize number of classes based on workload
     public static String determineWorkload(int numClasses) {
         if (numClasses == 1) {
-            return "Very Light";
+            return "Very Light"; //1 = Very Light
         } else if (numClasses == 2) {
-            return "Light"; 
+            return "Light";  //2 = Light
         } else if (numClasses >= 3 && numClasses <= 5) {
-            return "Part Time";
+            return "Part Time"; //3-5 =  Part Time
         } else {
-            return "Full Time";
+            return "Full Time"; //6+ = Full Time
         }
     }
     //Using a new method to process student data from a file and using ArrayList to store valid student data
@@ -65,7 +65,7 @@ public class POOACA1 {
             String line;
             while ((line = br.readLine()) != null) { //Reads the input files line by line
                 String firstName = line.trim(); //Data extraction from each students
-                
+                              
                 int numClasses;
                 try {
                     numClasses = Integer.parseInt(br.readLine().trim());
@@ -76,13 +76,13 @@ public class POOACA1 {
                 
                 String studentNumber = br.readLine().trim();
                 
-                String secondName = "";
+                String secondName = ""; 
                 //Calls a method to check if data from the file is valid
                 if (isValidData(firstName, secondName, numClasses, studentNumber)) {
                     String workload = determineWorkload(numClasses);
                     validStudents.add(new String[]{studentNumber, secondName, workload}); //Adds valid data to an ArrayList
                 } else { //Invalid data prints error message
-                    System.out.println("Invalid data for student " + firstName + " " + secondName + ". Skipping.");
+                    System.out.println("Invalid data for student " + firstName + " " + secondName);
                 } 
             }
         } catch (IOException e) {
@@ -93,18 +93,18 @@ public class POOACA1 {
            for (String[] student : validStudents) {
                writer.write(student[0] + " - " + student[1] + "\n" + student[2] + "\n");//Writes the correct format to the output file       
            } 
-           System.out.println("Data written to " + outputFilePath);
-        } catch (IOException e) {
+           System.out.println("Data written to " + outputFilePath); //Writes a successful message that the validated data are written to the output file
+        } catch (IOException e) { //Exceptiop error that prints out if data is not valid
            System.out.println("Error writing to " + outputFilePath + ": " + e.getMessage());
         } finally {
             Object writer = null;
             if (writer != null) {
-                writer.close();
+                writer.close(); //Closing the bufferedreader
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { //Main method
         Scanner scanner = new Scanner(System.in); // Using scanner for user input
         
         // Using an infinite loop until user chooses an option
