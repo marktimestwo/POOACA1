@@ -60,7 +60,7 @@ public class POOACA1 {
     //Using a new method to process student data from a file and using ArrayList to store valid student data
     public static void processStudentData(String inputFilePath, String outputFilePath) {
         ArrayList<String[]> validStudents = new ArrayList<>();
-        //Using BufferedReader to read from a file on laptop
+        //Using BufferedReader to read from a file on my laptop called "students.txt"
         try (BufferedReader br = new BufferedReader(new FileReader("//Users//marktimestwo//Documents//students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) { //Reads the input files line by line
@@ -79,13 +79,13 @@ public class POOACA1 {
                 String secondName = ""; 
                 //Calls a method to check if data from the file is valid
                 if (isValidData(firstName, secondName, numClasses, studentNumber)) {
-                    String workload = determineWorkload(numClasses);
+                    String workload = determineWorkload(numClasses); //If the data is valid it then gives the determined workload based on the format
                     validStudents.add(new String[]{studentNumber, secondName, workload}); //Adds valid data to an ArrayList
                 } else { //Invalid data prints error message
-                    System.out.println("Invalid data for student " + firstName + " " + secondName);
+                    System.out.println("Invalid data for student " + firstName + " " + secondName); //Error message for invalid data
                 } 
             }
-        } catch (IOException e) {
+        } catch (IOException e) { //Handles IO Exception
             System.err.println("Error reading the file: " + e.getMessage());
         }
         //Using bufferedwriter to write valid data to an output file called "status.txt"
@@ -107,60 +107,60 @@ public class POOACA1 {
     public static void main(String[] args) { //Main method
         Scanner scanner = new Scanner(System.in); // Using scanner for user input
         
-        // Using an infinite loop until user chooses an option
+        // Using an infinite loop until user chooses an option in the console
         while (true) {
-            // Menu options to choose from
+            // Menu options to choose from the console
             System.out.println("Menu");
             System.out.println("1. Standard Operation");
             System.out.println("2. Add Validated data to status.txt via Console");
             System.out.println("3. Exit");
             
-            // Asking the user to choose between options
+            // Asking the user to choose between options 1-3
             System.out.println("Choose an option (1-3): ");
-            int choice = scanner.nextInt(); 
+            int choice = scanner.nextInt(); //Scanner will read the users console input
             
             switch (choice) { //Using a switch statement to handle user choice
                 case 1: //This will call the processStudentData method
                     processStudentData("students.txt", "status.txt");
                     break;
                 
-                case 2: //This will ask the user for details and add validated data to "status.txt"
+                case 2: //This will ask the user for details in the given format and add validated data to "status.txt"
                     System.out.println("Enter student details in the format:");
                     System.out.println("<First Name> <Second Name>");
                     System.out.println("<Number of classes>");
                     System.out.println("<Student Number");
-                    
-                    scanner.nextLine();
+                    //These will read the fullname and split it into first and second name
+                    scanner.nextLine(); 
                     String fullName = scanner.nextLine();
                     String[] names = fullName.split("\\s");
                     String firstName = names[0];
                     String secondName = names.length > 1 ? names[1] : "";
                     
-                    int numClasses;
+                    int numClasses; //This reads the number of classes
                     try {
                         numClasses = Integer.parseInt(scanner.nextLine().trim());
                     } catch (NumberFormatException e) {
-                        System.out.println("Invalid format for number of classes.");
+                        System.out.println("Invalid format for number of classes."); //Error message
                         break;
                     }
                     
                     String studentNumber = scanner.next().trim(); //This will read the student number
-                    
+                    //Using a debugging print to verify the user inputs
                     System.out.println("Entered First Name: " + firstName);
                     System.out.println("Entered Second Name: " + secondName);
                     System.out.println("Entered Number of Classes: " + numClasses);
                     System.out.println("Entered Student Number: " + studentNumber);
                     
-                    if (isValidData(firstName, secondName, numClasses, studentNumber)) {
+                    if (isValidData(firstName, secondName, numClasses, studentNumber)) { //This will check if the data is valid which will then write to the output file
                         String workload = determineWorkload(numClasses);
                         try (FileWriter fw = new FileWriter("status.txt", true)) {
                             fw.write(studentNumber + " - " + secondName + "\n" + workload + "\n");
-                            System.out.println("Data written to status.txt");
-                        } catch (IOException e) {
+                            System.out.println("Data written to status.txt"); //Successful message
+                        } catch (IOException e) { //Handles IO Exception
                             System.err.println("Error writing to status.txt: " + e.getMessage());
                         }
                     } else {
-                        System.out.println("Invalid data. Not saved to status.txt");
+                        System.out.println("Invalid data. Not saved to status.txt"); //Error message for invalid data
                     }
                     break;
                     
