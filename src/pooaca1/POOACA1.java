@@ -104,6 +104,8 @@ public class POOACA1 {
         }
     }
 
+    // Github Repository Link: https://github.com/marktimestwo/POOACA1 
+    
     public static void main(String[] args) { //Main method
         Scanner scanner = new Scanner(System.in); // Using scanner for user input
         
